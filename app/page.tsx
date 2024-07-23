@@ -13,8 +13,8 @@ export default async function page() {
 
   const logout = async () => {
     "use server";
-    const supabse = await createSupabaseServerClient();
-    await supabse.auth.signOut();
+    const supabase = await createSupabaseServerClient();
+    await supabase.auth.signOut();
     redirect("/auth-server");
   };
 

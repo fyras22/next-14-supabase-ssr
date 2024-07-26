@@ -3,15 +3,21 @@ import CreateForm from "./create-form";
 import { deleteTodoById, readTodo, updateTodoById } from "./actions";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { readUserSession } from "@/lib/actions";
+import { redirect } from "next/navigation";
 
 export default async function page() {
-  const { data } = await readTodo();
+  const { data } = await readUserSession();
+  if (!data.session) {
+    return redirect("/oauth");
+  }
+  const todosList = await readTodo();
 
   return (
     <div className="flex h-screen justify-center items-center">
       <div className="w-96 space-y-5">
         <CreateForm />
-        {data?.map((todo, index) => {
+        {todosList?.data?.map((todo, index) => {
           const deleteTodo = deleteTodoById.bind(null, todo.id);
           const updateTodo = updateTodoById.bind(
             null,

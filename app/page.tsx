@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { readUserSession } from "@/lib/actions";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -23,6 +24,7 @@ export default async function page() {
       <form action={logout}>
         <Button>SignOut</Button>
       </form>
+      <Link href="/todo">Todo List</Link>
     </div>
   );
 }

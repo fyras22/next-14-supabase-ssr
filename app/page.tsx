@@ -8,14 +8,14 @@ export default async function page() {
   const { data } = await readUserSession();
 
   if (!data.session) {
-    return redirect("/auth-server");
+    return redirect("/oauth");
   }
 
   const logout = async () => {
     "use server";
     const supabase = await createSupabaseServerClient();
     await supabase.auth.signOut();
-    redirect("/auth-server");
+    redirect("/oauth");
   };
 
   return (

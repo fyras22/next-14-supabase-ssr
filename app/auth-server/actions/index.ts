@@ -30,7 +30,7 @@ export async function loginWithGoogle() {
   supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: `http://localhost:3000/auth-server/callback`,
+      redirectTo: `${location.origin}/oauth/callback`,
     },
   });
 }

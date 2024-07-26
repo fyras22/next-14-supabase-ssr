@@ -3,9 +3,12 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { unstable_noStore as noStore, revalidatePath } from "next/cache";
 
-export async function createTodo(title: string) {
+export async function createTodo(title: string, website: string) {
   const supabase = await createSupabaseServerClient();
-  const result = await supabase.from("todo").insert({ title }).single();
+  const result = await supabase
+    .from("todo")
+    .insert({ title, website })
+    .single();
   revalidatePath("/todo");
   return JSON.stringify(result);
 }

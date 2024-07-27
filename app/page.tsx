@@ -21,10 +21,14 @@ export default async function page() {
 
   return (
     <div>
-      <form action={logout}>
-        <Button>SignOut</Button>
-      </form>
-      <Link href="/todo">Todo List</Link>
+      {/* <form action={logout}>
+        <Link href="/todo">
+          <Button>SignOut</Button>
+        </Link>
+      </form> */}
+      {/* <Link href="/todo">
+        <Button>Todo List</Button>
+      </Link> */}
     </div>
   );
 }
